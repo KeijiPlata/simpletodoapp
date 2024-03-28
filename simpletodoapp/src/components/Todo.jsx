@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoItem from "./TodoItem";
 
 export default function Todo() {
   // get the user input
@@ -27,7 +28,11 @@ export default function Todo() {
         />
         <button type="submit">Add</button>
       </form>
-      {console.log(todos)}
+
+      {/* display todos using map */}
+      {todos.map((item) =>(
+        <TodoItem key={item} item={item}/>
+      ))}
     </div>
   );
 }
