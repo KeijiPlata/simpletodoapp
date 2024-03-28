@@ -20,7 +20,7 @@ export default function Todo() {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="font-Poppins">
         <input
           type="text"
           onChange={(e) => setTodo(e.target.value)}

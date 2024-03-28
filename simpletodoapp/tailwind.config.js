@@ -5,8 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Poppins: ["Poppins", "sans-serif"],
+      },
+      colors:{
+        customBlue: "#9FDDFF",
+        customGreen: "#ABF0CF",
+        customViolet: "#C594C3",
+        customYellow: "#F9DC4A",
+        customPink: "#FFB1EA",
+        customBg: "#282828",
+        customFr: "#636161",
+      },
+    },
   },
   plugins: [],
 }
-
