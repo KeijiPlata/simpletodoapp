@@ -4,7 +4,7 @@ import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="bg-customBg min-h-screen w-full font-Poppins p-8">
+    <div className="bg-customBg min-h-screen w-full font-Poppins p-6">
       <Header />
       <Todo />
     </div>

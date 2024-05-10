@@ -10,7 +10,7 @@ export default function Todo() {
   const [todos, setTodos] = useState([]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col gap-5 items-center justify-center">
       <Form setTodos={setTodos} todos={todos}/>
       <ListToDo todos={todos}/>
     </div>
