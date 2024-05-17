@@ -12,7 +12,7 @@ export default function Todo() {
   return (
     <div className="flex flex-col gap-5 items-center justify-center">
       <Form setTodos={setTodos} todos={todos}/>
-      <ListToDo todos={todos}/>
+      <ListToDo todos={todos} setTodos={setTodos}/>
     </div>
   );
 }
