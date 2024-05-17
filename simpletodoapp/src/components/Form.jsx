@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Form({ todos, setTodos }) {
   // get the user input
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({name: "", done: false});
 
   function handleSubmit(e) {
     // this will prevent site from refreshing
@@ -12,7 +12,7 @@ function Form({ todos, setTodos }) {
     setTodos([...todos, todo]);
 
     // empty the input when submit
-    setTodo("");
+    setTodo({name: "", done: false});
   }
   return (
     <>
@@ -22,8 +22,8 @@ function Form({ todos, setTodos }) {
           type="text"
           name="task"
           title="task"
-          onChange={(e) => setTodo(e.target.value)}
-          value={todo}
+          onChange={(e) => setTodo({name: e.target.value, done: false})}
+          value={todo.name}
           placeholder="Enter your task"
           className="bg-transparent border-b-2 outline-none text-white p-2 w-full border-white focus:border-customYellow transition-all duration-300 ease-in-out"
         />
