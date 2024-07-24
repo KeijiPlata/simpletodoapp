@@ -4,8 +4,7 @@ import { CirclePicker } from "react-color";
 
 function Form({ todos, setTodos }) {
   // get the user input
-  const [todo, setTodo] = useState({ name: "", done: false });
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [todo, setTodo] = useState({ name: "", date: new Date().toISOString().split('T')[0], done: false });
   const colorArrays = ["#9FDDFF", "#ABF0CF", "#FFB1EA", "#F9DC4A"];
 
   function handleSubmit(e) {
@@ -16,7 +15,7 @@ function Form({ todos, setTodos }) {
     setTodos([...todos, todo]);
 
     // empty the input when submit
-    setTodo({ name: "", done: false });
+    setTodo({ name: "", date: new Date().toISOString().split('T')[0], done: false });
   }
   return (
     <>
@@ -30,7 +29,7 @@ function Form({ todos, setTodos }) {
               type="text"
               name="task"
               title="task"
-              onChange={(e) => setTodo({ name: e.target.value, done: false })}
+              onChange={(e) => setTodo({ ...todo, name: e.target.value})}
               value={todo.name}
               placeholder="Enter your task"
               className="bg-transparent border-b-2 outline-none text-white p-2 w-full border-white focus:border-customYellow transition-all duration-300 ease-in-out"
@@ -49,8 +48,8 @@ function Form({ todos, setTodos }) {
                 type="date"
                 name="date"
                 title="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
+                value={todo.date}
+                onChange={(e) => setTodo({ ...todo, date: e.target.value})}
                 className="bg-transparent border-b-2 outline-none text-white p-2 w-full border-white focus:border-customYellow transition-all duration-300 ease-in-out"
                 required
               />
