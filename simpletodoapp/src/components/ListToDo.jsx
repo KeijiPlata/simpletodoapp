@@ -16,8 +16,9 @@ function ListToDo({ todos, setTodos }) {
       <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
         {sortedTodos.map((item) => (
           <div
-            key={item.name}
-            className="bg-customBlue  w-full text-center rounded-md p-8"
+            key={item.id}
+            style={{ backgroundColor: item.color }}
+            className={`w-full text-center rounded-md p-8`}
           >
             <TodoItem item={item} todos={todos} setTodos={setTodos} />
           </div>

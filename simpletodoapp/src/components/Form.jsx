@@ -1,10 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import { CirclePicker } from "react-color";
+import { v4 as uuidv4 } from "uuid";
 
 function Form({ todos, setTodos }) {
   // get the user input
-  const [todo, setTodo] = useState({ name: "", date: new Date().toISOString().split('T')[0], done: false });
+  const [todo, setTodo] = useState({
+    id: uuidv4(),
+    name: "",
+    date: new Date().toISOString().split("T")[0],
+    color: "#9FDDFF",
+    done: false,
+  });
   const colorArrays = ["#9FDDFF", "#ABF0CF", "#FFB1EA", "#F9DC4A"];
 
   function handleSubmit(e) {
@@ -15,7 +22,21 @@ function Form({ todos, setTodos }) {
     setTodos([...todos, todo]);
 
     // empty the input when submit
-    setTodo({ name: "", date: new Date().toISOString().split('T')[0], done: false });
+    setTodo({
+      id: uuidv4(),
+      name: "",
+      date: new Date().toISOString().split("T")[0],
+      color: "#9FDDFF",
+      done: false,
+    });
+    console.log(todo);
+  }
+
+  function handleColorChange(color) {
+    setTodo({
+      ...todo,
+      color: color.hex,
+    });
   }
   return (
     <>
@@ -29,7 +50,7 @@ function Form({ todos, setTodos }) {
               type="text"
               name="task"
               title="task"
-              onChange={(e) => setTodo({ ...todo, name: e.target.value})}
+              onChange={(e) => setTodo({ ...todo, name: e.target.value })}
               value={todo.name}
               placeholder="Enter your task"
               className="bg-transparent border-b-2 outline-none text-white p-2 w-full border-white focus:border-customYellow transition-all duration-300 ease-in-out"
@@ -49,7 +70,7 @@ function Form({ todos, setTodos }) {
                 name="date"
                 title="date"
                 value={todo.date}
-                onChange={(e) => setTodo({ ...todo, date: e.target.value})}
+                onChange={(e) => setTodo({ ...todo, date: e.target.value })}
                 className="bg-transparent border-b-2 outline-none text-white p-2 w-full border-white focus:border-customYellow transition-all duration-300 ease-in-out"
                 required
               />
@@ -65,6 +86,7 @@ function Form({ todos, setTodos }) {
                 <CirclePicker
                   colors={colorArrays}
                   width="100%"
+                  onChange={handleColorChange}
                   circleSpacing={6}
                 />
               </div>
