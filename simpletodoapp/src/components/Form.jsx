@@ -53,6 +53,7 @@ function Form({ todos, setTodos }) {
               onChange={(e) => setTodo({ ...todo, name: e.target.value })}
               value={todo.name}
               placeholder="Enter your task"
+              maxLength={15}
               className="bg-transparent border-b-2 outline-none text-white p-2 w-full border-white focus:border-customYellow transition-all duration-300 ease-in-out"
               required
             />
