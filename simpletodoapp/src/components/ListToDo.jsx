@@ -21,7 +21,7 @@ function ListToDo({ todos, setTodos }) {
             <div
               key={item.id}
               style={{ backgroundColor: item.color }}
-              className="w-full text-center rounded-md p-8"
+              className="w-full text-center rounded-md lg:p-8 md:p-6 p-5"
             >
               <TodoItem item={item} todos={todos} setTodos={setTodos} />
             </div>

@@ -20,11 +20,11 @@ export default function TodoItem({ item, todos, setTodos }) {
     <div className="flex flex-row justify-between items-center">
       <div>
         <h3
-          className={`text-2xl text-start ${item.done ? "line-through" : "no-underline"}`}
+          className={`lg:text-2xl md:text-xl text-lg text-start ${item.done ? "line-through" : "no-underline"}`}
         >
           {item.name}
         </h3>
-        <h3 className="text-start">{item.date}</h3>
+        <h3 className="text-start text-sm">{item.date}</h3>
       </div>
       <div className="flex flex-row gap-2">
         <div className="text-3xl cursor-pointer">
