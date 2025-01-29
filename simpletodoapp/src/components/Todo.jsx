@@ -19,7 +19,7 @@ export default function Todo() {
       }
     };
     fetchTodos(); 
-  }, []); // empty means to run only once, pag may laman, evertime na magchange yung object, magrarun useEffect
+  }, []); // empty means to run only once, pag may laman, everytime na magchange yung object, magrarun useEffect
 
   // create a array that is done and count its length
   const completedTodos = todos.filter((todo) => todo.done).length;
