@@ -42,7 +42,7 @@ function Login() {
             </label>
           </div>
         </div>
-        <div className="w-full pt-5">
+        <div className="flex flex-col items-center justify-center w-full gap-5 pt-5">
           {" "}
           <button
             type="submit"
@@ -51,6 +51,7 @@ function Login() {
             {" "}
             Login
           </button>
+          <p>Don't have an account? <a href="">Click here</a></p>
         </div>
       </div>
     </form>

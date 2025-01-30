@@ -3,12 +3,13 @@ import axios from "axios";
 import Form from "./Form";
 import ListToDo from "./ListToDo";
 import Footer from "./Footer";
+import Header from "./Header";
 
 export default function Todo() {
   // store todo items here
   const [todos, setTodos] = useState([]);
 
-  // Fetch data from the backend 
+  // Fetch data from the backend
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -18,7 +19,7 @@ export default function Todo() {
         console.error("Error fetching todos:", error);
       }
     };
-    fetchTodos(); 
+    fetchTodos();
   }, []); // empty means to run only once, pag may laman, everytime na magchange yung object, magrarun useEffect
 
   // create a array that is done and count its length
@@ -28,10 +29,13 @@ export default function Todo() {
   const totalTodos = todos.length;
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5">
-      <Form setTodos={setTodos} todos={todos} />
-      <ListToDo todos={todos} setTodos={setTodos} />
-      {/* <Footer completedTodos={completedTodos} totalTodos={totalTodos} /> */}
-    </div>
+    <>
+      <Header />
+      <div className="flex flex-col items-center justify-center gap-5 p-6">
+        <Form setTodos={setTodos} todos={todos} />
+        <ListToDo todos={todos} setTodos={setTodos} />
+        {/* <Footer completedTodos={completedTodos} totalTodos={totalTodos} /> */}
+      </div>
+    </>
   );
 }
