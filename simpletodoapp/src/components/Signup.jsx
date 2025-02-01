@@ -103,7 +103,7 @@ function Signup() {
             Signup
           </button>
           <p>
-            Already have an account? <a href="/login">Click here</a>
+            Already have an account? <a href="/login" className="transition-all duration-500 ease-in-out hover:text-customYellow hover:underline">Click here</a>
           </p>
         </div>
       </div>

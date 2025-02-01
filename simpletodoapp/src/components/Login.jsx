@@ -84,7 +84,7 @@ function Login() {
             Login
           </button>
           <p>
-            Don't have an account? <a href="/signup">Click here</a>
+            Don't have an account? <a href="/signup" className="transition-all duration-500 ease-in-out hover:text-customYellow hover:underline">Click here</a>
           </p>
         </div>
       </div>
