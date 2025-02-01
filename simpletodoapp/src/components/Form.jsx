@@ -1,57 +1,61 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { CirclePicker } from "react-color";
-import axios from "axios"; 
+import axios from "axios";
 
 function Form({ todos, setTodos }) {
-  // get the user input
+  const userId = localStorage.getItem("userId");
+
+  // Get the user input
   const [todo, setTodo] = useState({
     name: "",
     date: new Date().toISOString().split("T")[0],
     color: "#9FDDFF",
     done: false,
+    userId: userId || "",
   });
+
   const colorArrays = ["#9FDDFF", "#ABF0CF", "#FFB1EA", "#F9DC4A"];
 
-    // Handle form submission
-    async function handleSubmit(e) {
-      // Prevent site from refreshing
-      e.preventDefault();
-  
-      try {
-        // Make a POST request to the backend API to add a new todo
-        const response = await axios.post("http://localhost:4000/api/todos", todo);
-  
-        // After the todo is added, update the state (this adds the new todo to the todos array)
-        setTodos([...todos, response.data]);
-  
-        // Clear the input fields after submission
-        setTodo({
-          name: "",
-          date: new Date().toISOString().split("T")[0],
-          color: "#9FDDFF",
-          done: false,
-        });
-  
-        console.log("Todo added:", response.data); // Optionally log the response from the server
-      } catch (error) {
-        console.error("Error adding todo:", error);
-      }
+  // Handle form submission
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem("token");
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.post(
+        "http://localhost:4000/api/todos",
+        todo,
+        { headers }
+      );
+
+      setTodos([...todos, response.data]);
+
+      setTodo({
+        name: "",
+        date: new Date().toISOString().split("T")[0],
+        color: "#9FDDFF",
+        done: false,
+        userId: userId, 
+      });
+
+      console.log("Todo added:", response.data);
+    } catch (error) {
+      console.error("Error adding todo:", error);
     }
+  }
 
   function handleColorChange(color) {
-    setTodo({
-      ...todo,
-      color: color.hex,
-    });
+    setTodo({ ...todo, color: color.hex });
   }
+
   return (
     <>
       <form
         onSubmit={handleSubmit}
         className="grid w-full grid-cols-1 gap-5 text-white lg:w-4/5 md:w-11/12 md:grid-cols-2 lg:gap-5 md:gap-3 md:p-3"
       >
-        <div className="grid grid-cols-1 gap-3 ">
+        <div className="grid grid-cols-1 gap-3">
           <div className="flex flex-col gap-1 pl-1 md:gap-2 group">
             <input
               type="text"
@@ -89,7 +93,7 @@ function Form({ todos, setTodos }) {
                 Date
               </label>
             </div>
-            <div className="flex flex-col w-full gap-4 ">
+            <div className="flex flex-col w-full gap-4">
               <div className="flex items-center justify-center w-full">
                 <CirclePicker
                   colors={colorArrays}
@@ -105,9 +109,8 @@ function Form({ todos, setTodos }) {
         <div className="flex flex-col items-center self-center justify-center w-full">
           <button
             type="submit"
-            className="w-full p-2 text-center bg-transparent rounded-md md:w-7/12 outline"
+            className="w-full p-2 text-center transition-all duration-500 ease-in-out bg-transparent rounded-md md:w-7/12 outline hover:outline-customYellow hover:text-customYellow"
           >
-            {" "}
             + Create
           </button>
         </div>

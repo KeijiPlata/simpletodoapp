@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import { FaCheck } from "react-icons/fa6";
-import { FaSpinner } from "react-icons/fa6";
+import { FaCheck, FaSpinner } from "react-icons/fa6";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import axios from "axios";
@@ -11,7 +10,9 @@ export default function TodoItem({ item, todos, setTodos }) {
   const [error, setError] = useState(null);
 
   const API_URL = "http://localhost:4000/api/todos";
+  const token = localStorage.getItem("token");
 
+  // modal before delete
   function confirmDelete() {
     confirmAlert({
       overlayClassName: "bg-black/70 backdrop-blur-sm fixed inset-0",
@@ -45,12 +46,16 @@ export default function TodoItem({ item, todos, setTodos }) {
       },
     });
   }
-  
+
   // Delete a todo item from the database
   async function handleDelete() {
     try {
       setLoading(true);
-      await axios.delete(`${API_URL}/${item._id}`);
+      await axios.delete(`${API_URL}/${item._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      });
       setTodos(todos.filter((todo) => todo._id !== item._id));
     } catch (error) {
       setError("Failed to delete todo. Try again.");
@@ -63,9 +68,15 @@ export default function TodoItem({ item, todos, setTodos }) {
   async function handleClick() {
     try {
       setLoading(true);
-      const response = await axios.put(`${API_URL}/${item._id}`, {
-        done: !item.done,
-      });
+      const response = await axios.put(
+        `${API_URL}/${item._id}`,
+        { done: !item.done },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        }
+      );
 
       setTodos(
         todos.map((todo) =>
