@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Form({ todos, setTodos }) {
   const userId = localStorage.getItem("userId");
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Get the user input
   const [todo, setTodo] = useState({
@@ -24,7 +25,7 @@ function Form({ todos, setTodos }) {
       const token = localStorage.getItem("token");
       const headers = { Authorization: `Bearer ${token}` };
       const response = await axios.post(
-        "http://localhost:4000/api/todos",
+        `${API_URL}/api/todos`,
         todo,
         { headers }
       );

@@ -7,6 +7,7 @@ import Header from "./Header";
 
 export default function Todo() {
   const [todos, setTodos] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -18,7 +19,7 @@ export default function Todo() {
       }
 
       try {
-        const response = await axios.get("http://localhost:4000/api/todos", {
+        const response = await axios.get(`${API_URL}/api/todos`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
