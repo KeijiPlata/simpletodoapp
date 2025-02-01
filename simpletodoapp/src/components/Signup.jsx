@@ -11,6 +11,7 @@ function Signup() {
 
   const [error, setError] = useState(null); 
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Handle input change
   const handleChange = (e) => {
@@ -27,7 +28,7 @@ function Signup() {
     }
 
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/signup", {
+      const res = await axios.post(`${API_URL}/api/auth/signup`, {
         email: formData.email,
         password: formData.password,
       });

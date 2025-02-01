@@ -8,8 +8,9 @@ import axios from "axios";
 export default function TodoItem({ item, todos, setTodos }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const API_URL_ENV = import.meta.env.VITE_API_URL;
 
-  const API_URL = "http://localhost:4000/api/todos";
+  const API_URL = `${API_URL_ENV}/api/todos`;
   const token = localStorage.getItem("token");
 
   // modal before delete
