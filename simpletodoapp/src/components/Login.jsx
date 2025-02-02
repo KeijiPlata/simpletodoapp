@@ -80,7 +80,7 @@ function Login() {
         <div className="flex flex-col items-center justify-center w-full gap-5 pt-5">
           <button
             type="submit"
-            className="w-full p-3 text-center bg-transparent rounded-md outline"
+            className="w-full p-3 text-center transition-all duration-500 ease-in-out bg-transparent rounded-md outline hover:outline-customYellow hover:text-customYellow"
           >
             Login
           </button>
