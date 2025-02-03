@@ -1,4 +1,4 @@
-# ✅ SimpleToDo App
+# ✅ SimpleToDoApp
 
 SimpleToDo is a task management web application that allows users to create, update, and manage their to-do lists efficiently. Users can sign up, log in, and track their tasks with a simple and intuitive interface.
 
